@@ -144,6 +144,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         ActivatePanels(InsideRoomUIPanel.name);
         RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
         Player1Name.text = PlayerNameInput.name;
+        StartGameButton.SetActive(false);
        
 
     }
@@ -154,6 +155,10 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
         Player2Name.text = newPlayer.NickName;
         Debug.Log(" new player enterd the room");
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            StartGameButton.SetActive(true);
+        }
     }
     
     
