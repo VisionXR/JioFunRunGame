@@ -66,4 +66,12 @@ public class JMRDemoMaster : MonoBehaviour
                  + "ServiceVersion:\t" + buildApi.serviceVersion() + "\n"
                  ;
     }
+
+    /// <summary>
+    /// Quit Current Application
+    /// </summary>
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }

@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using JMRToolKit.UI.Keyboard;
 using JMRSDK.InputModule;
-
+using JMRSDK.Utilities;
 namespace JMRSDK.Toolkit.UI
 {
     /// <summary>
@@ -630,7 +630,7 @@ namespace JMRSDK.Toolkit.UI
         //[SerializeField]
         protected TMP_ScrollbarEventHandler verticalScrollbarEventHandler;
         public Transform j_KeyboardPosition { get => KeyboardSpawnPoint; set => KeyboardSpawnPoint = value; }
-
+        public Transform v_KeyboardPosition { get => KeyboardSpawnPoint; set => KeyboardSpawnPoint = value; }
         public SubmitEvent Submit { get; set; }
         /// <summary>
         /// Event delegates triggered when the input field submits its data.
@@ -931,8 +931,8 @@ namespace JMRSDK.Toolkit.UI
 
         protected void OnEnable()
         {
-            //Debug.Log("*** OnEnable() *** - " + this.name);
-
+            RemoveGlobalListener();
+           
             if (Submit == null)
             {
                 Submit = new SubmitEvent();
@@ -1004,7 +1004,7 @@ namespace JMRSDK.Toolkit.UI
         {
 
             j_BlinkCoroutine = null;
-
+           
             DeactivateInputField();
             if (textComponent != null)
             {
@@ -1617,7 +1617,7 @@ namespace JMRSDK.Toolkit.UI
 
             // Disable focus until user re-selected the input field.
             j_AllowInput = false;
-
+            
             if (verticalScrollbar)
             {
                 j_UpdatingScrollbarValues = true;
@@ -1625,7 +1625,7 @@ namespace JMRSDK.Toolkit.UI
             }
 
             //Debug.Log("Scroll Position:" + m_ScrollPosition);
-        }
+        }        
 
         public void ForceLabelUpdate()
         {
@@ -1682,30 +1682,24 @@ namespace JMRSDK.Toolkit.UI
 
             ActivateInputField();
         }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!InteractableActive())
                 return;
-            //Debug.Log("Pointer Click Event...");
+         
 
-            if (JMRVirtualKeyBoard.Instance)
+            if (true)//Bhumit
             {
-                if (eventData.selectedObject != null && eventData.selectedObject.tag == "Search")
+                if (JMRVirtualKeyBoard.Instance)
+                    JMRVirtualKeyBoard.Instance.ShowKeyBoard(this);
+                else
                 {
-                    return;
+                    if (!JMRKeyboardSpawner.Instance.SpawnKeyboard(this))
+                        Debug.LogError("Cant find keyboard prefab");
                 }
-                JMRVirtualKeyBoard.Instance.ShowKeyBoard(this);
             }
-            else
-            {
-                if (!JMRKeyboardSpawner.Instance.SpawnKeyboard(this))
-                    Debug.LogError("Cant find keyboard prefab");
-            }
-
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
-
             ActivateInputField();
         }
 
@@ -2057,7 +2051,14 @@ namespace JMRSDK.Toolkit.UI
         #endregion
 
         #region PRIVATE METHODS
-
+        private void AddGlobalListener()
+        {
+            JMRInputManager.Instance.AddGlobalListener(gameObject);
+        }
+        private void RemoveGlobalListener()
+        {
+            JMRInputManager.Instance.RemoveGlobalListener(gameObject);
+        }
         private bool InteractableActive()
         {
             return GetComponent<JMRInteractable>().IsEnabled;
@@ -3841,7 +3842,10 @@ namespace JMRSDK.Toolkit.UI
             ValueChanged?.Invoke(Text);
             valueChanged?.Invoke(Text);
         }
-
+        public bool isVirtualKeyBoard()
+        {
+            return false;
+        }
         public void OnDeselect()
         {
             if (!InteractableActive())

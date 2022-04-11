@@ -280,6 +280,8 @@ namespace JMRSDK.Toolkit
         protected virtual void ChangeToHover()
         {
             jmrThemeAnimator.SetTrigger(JMRConstantThemeSystem.JMRButtonStates.HOVER);
+            //Trigger Haptics
+            //JMRInteractionManager.Instance.TriggerHaptics(JMRInteractionManager.Instance.HAPTICS_HOVER, JMRInteractionManager.Instance.HAPTICS_INTENSITY_MEDIUM, 0);
         }
 
         protected virtual void ChangeToDisabled()

@@ -21,6 +21,8 @@ public class JMRDemoInteractionExample : MonoBehaviour, ISwipeHandler
     private Text interactionData;
     [SerializeField]
     private GameObject rotateObject;
+    [SerializeField]
+    private Text ErrorText;
     private bool isInitialized;
     private bool isControllerConnected = false;
     AndroidJavaClass androidSystemClockObject;
@@ -45,11 +47,14 @@ public class JMRDemoInteractionExample : MonoBehaviour, ISwipeHandler
         JMRInteractionManager.OnDisconnected += OnDisconnect;
         JMRInteractionManager.OnStartScanning += OnStartScan;
         JMRInteractionManager.OnConnected += OnConnect;
+        JMRInteractionManager.OnEnvironmentNotSupported += OnEnviromentError;
         StartCoroutine(WaitTilFindController());
         Text text = GetTextElement(0);
         text.text = $"Controller : Online";
     }
 
+
+   
     private IEnumerator WaitTilFindController()
     {
         do
@@ -66,6 +71,7 @@ public class JMRDemoInteractionExample : MonoBehaviour, ISwipeHandler
         JMRInteractionManager.OnConnected -= OnConnect;
         JMRInteractionManager.OnDisconnected -= OnDisconnect;
         JMRInteractionManager.OnStartScanning -= OnStartScan;
+        JMRInteractionManager.OnEnvironmentNotSupported -= OnEnviromentError;
         isInitialized = false;
         Controllers = new List<IInputSource>();
     }
@@ -160,7 +166,6 @@ public class JMRDemoInteractionExample : MonoBehaviour, ISwipeHandler
             + $"Latency: {latency} ms" + "\n"
             + $"Maximum Latency: {maxLatency} ms" + "\n"
             ;
-
     }
 
     private Text GetTextElement(int i)
@@ -180,6 +185,20 @@ public class JMRDemoInteractionExample : MonoBehaviour, ISwipeHandler
         text.gameObject.SetActive(true);
         return text;
     }
+
+    private void OnEnviromentError(int ErrorCode)
+    {
+        StartCoroutine(ShowEnvionmentError());
+    }
+
+
+    private IEnumerator ShowEnvionmentError()
+    {
+        ErrorText.text = "ENVIRONMENT NOT SUPPORTED !!!";
+        yield return new WaitForSeconds(5);
+        ErrorText.text = "";
+    }
+
 
     string swipeData = "";
     private void Log(string text)

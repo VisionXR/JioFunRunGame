@@ -136,17 +136,31 @@ namespace JMRSDK
                 else
                     JMRVoiceManager.Instance.StartListening();
             }
+            else
+                LogText.text = "This cannot be tested in Editor, Please make android build to test this";
         }
         public void StopListening()
         {
             if (!Application.isEditor)
                 JMRVoiceManager.Instance.StopListening();
+            else
+                LogText.text = "This cannot be tested in Editor, Please make android build to test this";
         }
 
         public void CancelListening()
         {
             if (!Application.isEditor)
                 JMRVoiceManager.Instance.CancelListening();
+            else
+                LogText.text = "This cannot be tested in Editor, Please make android build to test this";
+        }
+
+        public void RetryInit()
+        {
+            if (!Application.isEditor)
+                JMRVoiceManager.Instance.RetryInitialization();
+            else
+                LogText.text = "This cannot be tested in Editor, Please make android build to test this";
         }
 
         private void LateUpdate()

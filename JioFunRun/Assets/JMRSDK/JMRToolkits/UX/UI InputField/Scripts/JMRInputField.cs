@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
 using JMRSDK.InputModule;
+using JMRSDK.Utilities;
 
 namespace JMRSDK.Toolkit.UI
 {
@@ -232,7 +233,11 @@ namespace JMRSDK.Toolkit.UI
                 }
             }
         }
-
+        public bool isVirtualKeyBoard()
+        {
+            return false;
+        }
+      
         public bool HideSoftKeyboard
         {
             get
@@ -623,12 +628,15 @@ namespace JMRSDK.Toolkit.UI
 
         public bool supportMultiLine = false;
 
+       
+
         //[SerializeField]
         protected Scrollbar verticalScrollbar;
 
         //[SerializeField]
         protected TMP_ScrollbarEventHandler verticalScrollbarEventHandler;
         public Transform j_KeyboardPosition { get => KeyboardSpawnPoint; set => KeyboardSpawnPoint = value; }
+        public Transform v_KeyboardPosition { get => KeyboardSpawnPoint; set => KeyboardSpawnPoint = value; }
 
         public SubmitEvent Submit { get; set; }
         /// <summary>
@@ -931,7 +939,7 @@ namespace JMRSDK.Toolkit.UI
         protected void OnEnable()
         {
             //Debug.Log("*** OnEnable() *** - " + this.name);
-
+            RemoveGlobalListener();
             if (Submit == null)
             {
                 Submit = new SubmitEvent();
@@ -942,7 +950,7 @@ namespace JMRSDK.Toolkit.UI
             }
             if (text == null)
                 text = string.Empty;
-
+          
             if (Application.isPlaying)
             {
                 if (j_CachedInputRenderer == null && textComponent != null)
@@ -988,7 +996,7 @@ namespace JMRSDK.Toolkit.UI
                 // Cache reference to Vertical Scrollbar RectTransform and add listener.
                 if (verticalScrollbar != null)
                 {
-                    //textComponent.ignoreRectMaskCulling = true;
+                  //  textComponent.ignoreRectMaskCulling = true;
                     verticalScrollbar.onValueChanged.AddListener(OnScrollbarValueChange);
                 }
 
@@ -1003,7 +1011,6 @@ namespace JMRSDK.Toolkit.UI
         {
 
             j_BlinkCoroutine = null;
-
             DeactivateInputField();
             if (textComponent != null)
             {
@@ -1617,6 +1624,7 @@ namespace JMRSDK.Toolkit.UI
             // Disable focus until user re-selected the input field.
             j_AllowInput = false;
 
+
             if (verticalScrollbar)
             {
                 j_UpdatingScrollbarValues = true;
@@ -1681,13 +1689,11 @@ namespace JMRSDK.Toolkit.UI
 
             ActivateInputField();
         }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!InteractableActive())
                 return;
             //Debug.Log("Pointer Click Event...");
-
             if (true)//Bhumit
             {
                 if (JMRVirtualKeyBoard.Instance)
@@ -1697,7 +1703,6 @@ namespace JMRSDK.Toolkit.UI
                     if (!JMRKeyboardSpawner.Instance.SpawnKeyboard(this))
                         Debug.LogError("Cant find keyboard prefab");
                 }
-
 
             }
 
@@ -1730,6 +1735,7 @@ namespace JMRSDK.Toolkit.UI
 
             j_HasDoneFocusTransition = false;
             j_AllowInput = false;
+
 
             if (placeholder != null)
                 placeholder.enabled = string.IsNullOrEmpty(text);
@@ -2055,7 +2061,14 @@ namespace JMRSDK.Toolkit.UI
         #endregion
 
         #region PRIVATE METHODS
-
+        private void AddGlobalListener()
+        {
+            JMRInputManager.Instance.AddGlobalListener(gameObject);
+        }
+        private void RemoveGlobalListener()
+        {
+            JMRInputManager.Instance.RemoveGlobalListener(gameObject);
+        }
         private bool InteractableActive()
         {
             return GetComponent<JMRInteractable>().IsEnabled;
@@ -3831,7 +3844,7 @@ namespace JMRSDK.Toolkit.UI
             ValueChanged?.Invoke(Text);
             valueChanged?.Invoke(Text);
         }
-
+        
         public void OnDeselect()
         {
             if (!InteractableActive())

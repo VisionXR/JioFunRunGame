@@ -106,6 +106,8 @@ namespace JMRSDK.Toolkit.UI
             RestTriggers();
             j_timer = 0;
             j_animator.SetTrigger("Hover");
+            //Trigger Haptics
+            //JMRInteractionManager.Instance.TriggerHaptics(JMRInteractionManager.Instance.HAPTICS_HOVER, JMRInteractionManager.Instance.HAPTICS_INTENSITY_MEDIUM, 0);
         }
 
         /// <summary>

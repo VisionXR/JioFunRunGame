@@ -32,13 +32,7 @@ namespace JMRSDK.Toolkit
             else
             {
                 _instance = this;
-            }
-
-            //if (!keyboard_prefab)
-            //Debug.LogError("Keyboard prefab reference missing");
-
-            JMRLogHandler.Log("Toolkit Manager Initialized.");
-            JMRLogHandler.Log("Cheer up! The worst is over.");
+            }          
         }
         #endregion
     }
