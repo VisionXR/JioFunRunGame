@@ -5,19 +5,15 @@ using System;
 using UnityEngine.UI;
 using System.Collections;
 
-public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulationHandler, ISwipeHandler, ITouchHandler
+public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulationHandler, ISwipeHandler
 {
     public static JioInputManager Instance;
     public GameObject JIOInputManager;
     JMRInputManager jmrInputManager;
     public event Action<float> SelectClick;
     public event Action UserSwipedLeft, UserSwipedRight;
-    public event Action RightTouched, LeftTouched, TouchStopped;
+    public event Action Touched;
    
-
-
-
-
     public void OnSelectClicked(SelectClickEventData eventData)
     {
 
@@ -44,7 +40,7 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
     // Start is called before the first frame update
     void Start()
     {
-        JIOInputManager = GameObject.Find("InputManager");
+       
         jmrInputManager = JIOInputManager.GetComponent<JMRInputManager>();
         jmrInputManager.AddGlobalListener(gameObject);
     }
@@ -55,22 +51,35 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
     // Update is called once per frame
     void Update()
     {
-        if (JIOInputManager == null)
-        {
-            JIOInputManager = JIOInputManager = GameObject.Find("InputManager");
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            RightTouched();
-        }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            LeftTouched();
-        }
-
-
+        ProcesskeyboardInputs();
+        ProcessJioInputs();
+ 
     }
+    private void ProcesskeyboardInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log(" Touched ");
+            if (Touched != null)
+            {
+                Touched();
+            }
+           
+        }
+    }
+    private void ProcessJioInputs()
+    {
+        Vector2 TouchData = JMRInteraction.GetTouch();
+        if(TouchData.x>0 || TouchData.y > 0)
+        {
+            if (Touched != null)
+            {
+                Touched();
+            }
+        }
+    }
+
 
     public void OnManipulationStarted(ManipulationEventData eventData)
     {
@@ -129,19 +138,5 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
 
     }
 
-    public void OnTouchStart(TouchEventData eventData, Vector2 TouchData)
-    {
-    
-    }
-
-    public void OnTouchStop(TouchEventData eventData, Vector2 TouchData)
-    {
-        TouchStopped();
-    }
-
-    public void OnTouchUpdated(TouchEventData eventData, Vector2 TouchData)
-    {
-
-    }
 }
 

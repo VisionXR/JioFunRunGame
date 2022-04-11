@@ -1,12 +1,16 @@
-﻿using JMRSDK.Toolkit.UI;
+﻿using ExitGames.Client.Photon;
+using JMRSDK.Toolkit.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class JioNetworkmanager : MonoBehaviourPunCallbacks
 {
+    public static JioNetworkmanager Instance;
+    
     [Header("Login Panel")]
     public TMP_Text PlayerNameInput;
     public TMP_Text ConnectionStatus;
@@ -23,7 +27,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     public GameObject InsideRoomUIPanel;
     public TMP_Text RoomInfoText;
     public TMP_Text Player1Name, Player2Name;
-   
+
     public GameObject StartGameButton;
 
     [Header("RoomList  UI Panel")]
@@ -41,11 +45,15 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     public string P1, P2;
 
 
-
     public int NextSceneNumber;
+    private const byte SendPlayerPos=1;
+   
+    public event Action<Vector3> ReceiveOtherPlayerPosition;
+
 
     private void Awake()
     {
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
@@ -53,8 +61,18 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         ActivatePanels(LoginUIPanel.name);
     }
+    public bool isMaster()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-    
     void Update()
     {
         ConnectionStatus.text = " Connection Status: " + PhotonNetwork.NetworkClientState;
@@ -78,7 +96,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         string roomName = RoomName.Text;
         if (string.IsNullOrEmpty(roomName))
         {
-            roomName = "Room Name was " + Random.Range(1000, 10000);
+            roomName = "Room Name was " + UnityEngine.Random.Range(1000, 10000);
         }
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
@@ -137,7 +155,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + "  has connected to server ");
         ActivatePanels(GameOptionsUIPanel.name);
     }
-   
+
     public override void OnCreatedRoom()
     {
         Debug.Log("Created Room Successfully by " + PhotonNetwork.LocalPlayer.NickName + "Roomname was " + PhotonNetwork.CurrentRoom.Name);
@@ -149,7 +167,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
         Player1Name.text = PlayerNameInput.name;
         StartGameButton.SetActive(false);
-       
+
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -164,8 +182,8 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
             StartGameButton.SetActive(true);
         }
     }
-    
-    
+
+
     public override void OnLeftLobby()
     {
         ActivatePanels(GameOptionsUIPanel.name);
@@ -176,11 +194,58 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("Room Joined Failed because " + message+ "return code was "+ returnCode);
+        Debug.Log("Room Joined Failed because " + message + "return code was " + returnCode);
 
     }
-    
-    
+
+
 
     #endregion
+
+    #region SyncPlayer
+     public void SendPlayerData(Vector3 Position)
+    {
+
+        object[] data = new object[] { RoundVector(Position) };
+        RaiseEventOptions raiseEventOptions;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        }
+        else
+        {
+            raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
+        }
+        PhotonNetwork.RaiseEvent(SendPlayerPos, data, raiseEventOptions, SendOptions.SendReliable);
+    }
+    private Vector3 RoundVector(Vector3 input)
+    {
+        Vector3 output;
+        float x = input.x;
+        float y = input.y;
+        float z = input.z;
+        x = (float)Math.Round(x, 5);
+        y = (float)Math.Round(y, 5);
+        z = (float)Math.Round(z, 5);
+        output = new Vector3(x, y, z);
+        return (output);
+    }
+    public void OnEvent(EventData photonEvent)
+    {
+        byte eventCode = photonEvent.Code;
+        if (eventCode == SendPlayerPos)
+        {
+            Debug.Log("Player Positions recieving");
+            object[] data = (object[])photonEvent.CustomData;
+            if (ReceiveOtherPlayerPosition != null)
+            {
+
+                ReceiveOtherPlayerPosition((Vector3)data[0]);
+            }
+
+        }
+       
+    }
+    #endregion
+
 }

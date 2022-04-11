@@ -1,28 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class JioPlayer : MonoBehaviourPunCallbacks
 {
-    public GameObject Player1, Player2;
+    public float MoveSpeed;
     void Start()
     {
-        if (photonView.IsMine)
+        JioInputManager.Instance.Touched += OnPlayerTouched;
+        JioNetworkmanager.Instance.ReceiveOtherPlayerPosition += OnPlayerPositionRecieved;
+    }
+
+    private void OnPlayerPositionRecieved(Vector3 obj)
+    {
+        transform.position = obj;
+    }
+
+    private void OnPlayerTouched()
+    {
+        Debug.Log("It came in to On PlayerTouched");
+        if(JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player1")
         {
-            Player1.SetActive(true);
-            Player2.SetActive(false);
+            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            Debug.Log("It came inside if condition Player 1 to On PlayerTouched");
         }
-        else 
+        else if(!JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player2")
         {
-            Player1.SetActive(false);
-            Player2.SetActive(true);
+            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            Debug.Log("It came inside if condition Player 2 to On PlayerTouched");
+
         }
+        JioNetworkmanager.Instance.SendPlayerData(transform.position);
+       
     }
 
     
-    void Update()
-    {
-        
-    }
 }
