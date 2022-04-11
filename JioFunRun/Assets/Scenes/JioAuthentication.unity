@@ -34282,7 +34282,7 @@ MonoBehaviour:
   m_Script: {fileID: 998896314, guid: 39673d13616f37540b9d9521295b12b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowPersist: 1
+  allowPersist: 0
 --- !u!222 &8599927274587907399
 CanvasRenderer:
   m_ObjectHideFlags: 0
