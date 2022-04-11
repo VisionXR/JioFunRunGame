@@ -44,7 +44,10 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
 
     public int NextSceneNumber;
 
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -99,6 +102,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     }
     public void OnStartGameButtonClicked()
     {
+
         PhotonNetwork.LoadLevel(NextSceneNumber);
     }
     public void OnJoinRandomRoomButtonClicked()
@@ -175,6 +179,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         Debug.Log("Room Joined Failed because " + message+ "return code was "+ returnCode);
 
     }
+    
     
 
     #endregion
