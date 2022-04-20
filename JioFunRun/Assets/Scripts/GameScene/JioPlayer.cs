@@ -8,10 +8,13 @@ public class JioPlayer : MonoBehaviour
     public static JioPlayer Instance;
     public float MoveSpeed;
     public bool isCollided;
-   
-    void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+    void Start()
+    {
+        
         JioInputManager.Instance.Touched += OnPlayerTouched;
         JioNetworkmanager.Instance.ReceiveOtherPlayerPosition += OnPlayerPositionRecieved;
         if(JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player1")
@@ -56,13 +59,24 @@ public class JioPlayer : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+      
         if (collision.gameObject.tag == "LevelGameObject")
         {
-            isCollided = true;
-            Debug.Log("The collided object was " + collision.gameObject.name);
-            JioNetworkmanager.Instance.OnPlayerCollidedWithObject();
-          
+            PlayerCollided();
         }
+    }
+    public void PlayerCollided()
+    {
+        isCollided = true;
+        Debug.Log("The collided object ");
+        JioNetworkmanager.Instance.OnPlayerCollidedWithObject();
+        RespawnThePlayer();
+
+    }
+    public void RespawnThePlayer()
+    {
+        Vector3 CheckPointPosition = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+        this.transform.position = CheckPointPosition;
     }
 
 

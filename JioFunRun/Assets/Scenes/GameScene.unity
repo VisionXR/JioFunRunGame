@@ -6833,7 +6833,6 @@ GameObject:
   - component: {fileID: 5919907625911637064}
   - component: {fileID: 5097868938775042841}
   - component: {fileID: 2169257064380197077}
-  - component: {fileID: 322543191513741599}
   m_Layer: 0
   m_Name: Cone.024
   m_TagString: LevelGameObject
@@ -6841,19 +6840,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &322543191513741599
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322543191513741598}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000023841858, y: 0.00000035762787, z: 0.000005722046}
 --- !u!33 &322834321592665011
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9485,7 +9471,6 @@ GameObject:
   - component: {fileID: 4444089946216631876}
   - component: {fileID: 6467475015507177683}
   - component: {fileID: 8708872903046642301}
-  - component: {fileID: 1035292949980434612}
   m_Layer: 0
   m_Name: Cone.021
   m_TagString: LevelGameObject
@@ -9493,19 +9478,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1035292949980434612
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035292949980434611}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000030994415, y: 0.00000071525574, z: 0.0000038146973}
 --- !u!23 &1035302969729618130
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10097,7 +10069,6 @@ GameObject:
   - component: {fileID: 4059502217999445814}
   - component: {fileID: 2099769385890862683}
   - component: {fileID: 7784049071335073080}
-  - component: {fileID: 1218320038475482937}
   m_Layer: 0
   m_Name: Cone.022
   m_TagString: LevelGameObject
@@ -10105,19 +10076,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1218320038475482937
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218320038475482936}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000023841858, y: 0.00000035762787, z: 0.000005722046}
 --- !u!33 &1221574223015772203
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16376,7 +16334,6 @@ GameObject:
   - component: {fileID: 526814492463774828}
   - component: {fileID: 2426374231833931787}
   - component: {fileID: 9079310437901035006}
-  - component: {fileID: 2948524667533106474}
   m_Layer: 0
   m_Name: Cone.029
   m_TagString: LevelGameObject
@@ -16384,19 +16341,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &2948524667533106474
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2948524667533106473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.1536565, y: 1.5000019, z: 3.706658}
-  m_Center: {x: 1.776824, y: 0.00000016089595, z: -1.5533231}
 --- !u!33 &2949338798758610804
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18526,7 +18470,6 @@ GameObject:
   - component: {fileID: 201567458841473274}
   - component: {fileID: 4169694611622506115}
   - component: {fileID: 170403040229387372}
-  - component: {fileID: 3688068663435397306}
   m_Layer: 0
   m_Name: Cone.025
   m_TagString: LevelGameObject
@@ -18534,19 +18477,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &3688068663435397306
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3688068663435397305}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000023841858, y: 0.00000035762787, z: 0.0000038146973}
 --- !u!1 &3691901580314133518
 GameObject:
   m_ObjectHideFlags: 0
@@ -21294,7 +21224,6 @@ GameObject:
   - component: {fileID: 5531348520315913045}
   - component: {fileID: 6187858845419496384}
   - component: {fileID: 7343244326307404767}
-  - component: {fileID: 4396722278282114339}
   m_Layer: 0
   m_Name: Cone.023
   m_TagString: LevelGameObject
@@ -21302,19 +21231,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &4396722278282114339
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4396722278282114338}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.000002861023, y: 0.00000059604645, z: 0.000005722046}
 --- !u!33 &4399308164132752139
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22282,7 +22198,6 @@ GameObject:
   - component: {fileID: 4187236097069380513}
   - component: {fileID: 7693271119501284173}
   - component: {fileID: 3781344056327171687}
-  - component: {fileID: 4657382269539132045}
   m_Layer: 0
   m_Name: Cone.019
   m_TagString: LevelGameObject
@@ -22290,19 +22205,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &4657382269539132045
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657382269539132044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000023841858, y: 0.00000047683716, z: 0.0000038146973}
 --- !u!1 &4662505854201628252
 GameObject:
   m_ObjectHideFlags: 0
@@ -24336,7 +24238,6 @@ GameObject:
   - component: {fileID: 5666064455426816286}
   - component: {fileID: 1467377416645510606}
   - component: {fileID: 6716121216282383154}
-  - component: {fileID: 5215459940697865547}
   m_Layer: 0
   m_Name: Cone.017
   m_TagString: LevelGameObject
@@ -24344,19 +24245,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &5215459940697865547
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5215459940697865546}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.00000333786, y: 0.00000059604645, z: 0.0000038146973}
 --- !u!23 &5218416721825008949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25258,7 +25146,6 @@ GameObject:
   - component: {fileID: 3855577861750265455}
   - component: {fileID: 9105228525660260922}
   - component: {fileID: 4538426914551551479}
-  - component: {fileID: 5497307237414356286}
   m_Layer: 0
   m_Name: Cone.015
   m_TagString: LevelGameObject
@@ -25266,19 +25153,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &5497307237414356286
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5497307237414356285}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.000002861023, y: 0.00000035762787, z: 0.0000038146973}
 --- !u!33 &5502547424460277032
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26335,7 +26209,6 @@ GameObject:
   - component: {fileID: 6311295599966472856}
   - component: {fileID: 7135568309118289915}
   - component: {fileID: 6834629944373706364}
-  - component: {fileID: 5794027232671332835}
   m_Layer: 0
   m_Name: Cone.016
   m_TagString: LevelGameObject
@@ -26343,19 +26216,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &5794027232671332835
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5794027232671332834}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000038146973, y: 0.00000035762787, z: 0.000005722046}
 --- !u!33 &5796500013141700142
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30069,7 +29929,6 @@ GameObject:
   - component: {fileID: 1436162597380460736}
   - component: {fileID: 7051022439916029944}
   - component: {fileID: 6292390235781350879}
-  - component: {fileID: 6854903189823773439}
   m_Layer: 0
   m_Name: Cone.027
   m_TagString: LevelGameObject
@@ -30077,19 +29936,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &6854903189823773439
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6854903189823773438}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.000002861023, y: 0.00000035762787, z: 0.0000038146973}
 --- !u!4 &6855741569205176652
 Transform:
   m_ObjectHideFlags: 0
@@ -44264,15 +44110,45 @@ GameObject:
   - component: {fileID: 6691627798336864335}
   - component: {fileID: 4799746922452339442}
   - component: {fileID: 6927313284042121412}
+  - component: {fileID: 8517431417870841203}
+  - component: {fileID: 8517431417870841202}
   - component: {fileID: 8517431417870841201}
   m_Layer: 0
   m_Name: Cylinder.009
-  m_TagString: Untagged
+  m_TagString: LevelGameObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &8517431417870841201
+--- !u!114 &8517431417870841201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517431417870841200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ad83dd01e0f48408658a053507c1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &8517431417870841202
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517431417870841200}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!65 &8517431417870841203
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44283,8 +44159,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.0000007, y: 0.3000007, z: 3.0000014}
-  m_Center: {x: -0.0000009536743, y: 0.00000011920929, z: 0.0000019073486}
+  m_Size: {x: 3.0000007, y: 0.9743707, z: 3.0000014}
+  m_Center: {x: -0.0000013404429, y: 0.33718663, z: 0.0000007794605}
 --- !u!33 &8523478401206289021
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44859,7 +44735,6 @@ GameObject:
   - component: {fileID: 5619375701746298180}
   - component: {fileID: 1170268195415710832}
   - component: {fileID: 4748635667976799627}
-  - component: {fileID: 8664473314564033845}
   m_Layer: 0
   m_Name: Cone.020
   m_TagString: LevelGameObject
@@ -44867,19 +44742,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &8664473314564033845
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664473314564033844}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000038146973, y: -0.00000023841858, z: 0.000005722046}
 --- !u!33 &8671510809696816649
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44963,7 +44825,6 @@ GameObject:
   - component: {fileID: 3583069481638458390}
   - component: {fileID: 8549813561758036504}
   - component: {fileID: 7954444608914023337}
-  - component: {fileID: 8685500349916049252}
   m_Layer: 0
   m_Name: Cone.028
   m_TagString: LevelGameObject
@@ -44971,19 +44832,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &8685500349916049252
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8685500349916049251}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.398233, y: 1.5000013, z: 2.379392}
-  m_Center: {x: 0.8991135, y: 0.00000014049253, z: -0.88969386}
 --- !u!222 &8696961557176657928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46433,7 +46281,6 @@ GameObject:
   - component: {fileID: 3494620971909934323}
   - component: {fileID: 322834321592665011}
   - component: {fileID: 5987345478675744025}
-  - component: {fileID: 9103865701137225955}
   m_Layer: 0
   m_Name: Cone.018
   m_TagString: LevelGameObject
@@ -46441,19 +46288,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &9103865701137225955
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9103865701137225954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000019073486, y: 0, z: 0.000005722046}
 --- !u!33 &9105228525660260922
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46702,7 +46536,6 @@ GameObject:
   - component: {fileID: 2730259245430285636}
   - component: {fileID: 4055621575817938525}
   - component: {fileID: 4265864815072664320}
-  - component: {fileID: 9173528203107779730}
   m_Layer: 0
   m_Name: Cone.026
   m_TagString: LevelGameObject
@@ -46710,19 +46543,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &9173528203107779730
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9173528203107779729}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60000044, y: 1.5000011, z: 0.6000003}
-  m_Center: {x: -0.0000023841858, y: 0.00000047683716, z: 0.000005722046}
 --- !u!23 &9182294062846702213
 MeshRenderer:
   m_ObjectHideFlags: 0
