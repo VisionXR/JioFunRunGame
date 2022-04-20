@@ -248,7 +248,9 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
         }
         if (eventCode == PlayerHasCollided)
         {
-            Debug.Log("Player has Collided With GameObject");
+            object[] data = (object[])photonEvent.CustomData;
+            bool isCollided = (bool)data[0];
+            Debug.Log("Other Player has Collided With GameObject");
             // instantiate at previous CheckPoint
         }
        
