@@ -318,6 +318,6 @@ public class JioAuthManager : MonoBehaviour
     private IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
-        GameObject.Find("JioNetworkManager").GetComponent<JioNetworkmanager>().PlayerNameInput.text = this.DisplayName;
+       // GameObject.Find("JioNetworkManager").GetComponent<JioNetworkmanager>().PlayerNameInput.text = this.DisplayName;
     }
 }

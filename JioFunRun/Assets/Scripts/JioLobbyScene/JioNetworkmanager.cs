@@ -7,12 +7,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class JioNetworkmanager : MonoBehaviourPunCallbacks
+public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     public static JioNetworkmanager Instance;
-    
+
     [Header("Login Panel")]
-    public TMP_Text PlayerNameInput;
+    public JMRUIPrimaryInputField PlayerNameIF;
     public TMP_Text ConnectionStatus;
     public GameObject LoginUIPanel;
 
@@ -46,7 +46,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
 
 
     public int NextSceneNumber;
-    private const byte SendPlayerPos=1;
+    private const byte SendPlayerPos=1,PlayerHasCollided=2;
    
     public event Action<Vector3> ReceiveOtherPlayerPosition;
 
@@ -80,7 +80,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     #region Methods
     public void OnEnterButtonClicked()
     {
-        string playerName = PlayerNameInput.text;
+        string playerName = PlayerNameIF.Text;
         if (!string.IsNullOrEmpty(playerName))
         {
             PhotonNetwork.NickName = playerName;
@@ -165,18 +165,19 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         Debug.Log("Joined Room Successfully by " + PhotonNetwork.LocalPlayer.NickName + "Roomname was " + PhotonNetwork.CurrentRoom.Name);
         ActivatePanels(InsideRoomUIPanel.name);
         RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
-        Player1Name.text = PlayerNameInput.name;
+        Player1Name.text = PlayerNameIF.Text;
         StartGameButton.SetActive(false);
+       
+       
 
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("Joined Room Successfully by " + newPlayer.NickName + "Roomname was " + PhotonNetwork.CurrentRoom.Name);
+        
         ActivatePanels(InsideRoomUIPanel.name);
         RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
         Player2Name.text = newPlayer.NickName;
-        Debug.Log(" new player enterd the room");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             StartGameButton.SetActive(true);
@@ -194,7 +195,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("Room Joined Failed because " + message + "return code was " + returnCode);
+       
 
     }
 
@@ -205,7 +206,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     #region SyncPlayer
      public void SendPlayerData(Vector3 Position)
     {
-
+        
         object[] data = new object[] { RoundVector(Position) };
         RaiseEventOptions raiseEventOptions;
         if (PhotonNetwork.IsMasterClient)
@@ -218,6 +219,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.RaiseEvent(SendPlayerPos, data, raiseEventOptions, SendOptions.SendReliable);
     }
+
     private Vector3 RoundVector(Vector3 input)
     {
         Vector3 output;
@@ -232,19 +234,41 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks
     }
     public void OnEvent(EventData photonEvent)
     {
+       
         byte eventCode = photonEvent.Code;
         if (eventCode == SendPlayerPos)
         {
-            Debug.Log("Player Positions recieving");
+            
             object[] data = (object[])photonEvent.CustomData;
             if (ReceiveOtherPlayerPosition != null)
             {
-
                 ReceiveOtherPlayerPosition((Vector3)data[0]);
             }
 
         }
+        if (eventCode == PlayerHasCollided)
+        {
+            Debug.Log("Player has Collided With GameObject");
+            // instantiate at previous CheckPoint
+        }
        
+    }
+    #endregion
+
+    #region PlayerHasCollided
+    public void OnPlayerCollidedWithObject()
+    {
+        object[] data = new object[] { JioPlayer.Instance.isCollided };
+        RaiseEventOptions raiseEventOptions;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        }
+        else
+        {
+            raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
+        }
+        PhotonNetwork.RaiseEvent(PlayerHasCollided, data, raiseEventOptions, SendOptions.SendReliable);
     }
     #endregion
 

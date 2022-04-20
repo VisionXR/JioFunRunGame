@@ -17,7 +17,7 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
     public void OnSelectClicked(SelectClickEventData eventData)
     {
 
-        Debug.Log("On Select Ckicked");
+       
     }
 
     public void OnSelectDown(SelectEventData eventData)
@@ -60,7 +60,7 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log(" Touched ");
+            
             if (Touched != null)
             {
                 Touched();

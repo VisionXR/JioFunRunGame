@@ -18,6 +18,7 @@ TagManager:
   - BackgroundTextLayer
   - DisabledTextLayer
   - DisabledLayer
+  - LevelGameObject
   layers:
   - Default
   - TransparentFX

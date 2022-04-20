@@ -1,39 +1,69 @@
 ﻿
 using UnityEngine;
-using Photon.Pun;
+using TMPro;
 using System;
 
-public class JioPlayer : MonoBehaviourPunCallbacks
+public class JioPlayer : MonoBehaviour
 {
+    public static JioPlayer Instance;
     public float MoveSpeed;
+    public bool isCollided;
+   
     void Start()
     {
+        Instance = this;
         JioInputManager.Instance.Touched += OnPlayerTouched;
         JioNetworkmanager.Instance.ReceiveOtherPlayerPosition += OnPlayerPositionRecieved;
+        if(JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player1")
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+        if (!JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player2")
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
     }
 
     private void OnPlayerPositionRecieved(Vector3 obj)
     {
-        transform.position = obj;
+        if (JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player2")
+        {
+            transform.position = obj;
+        }
+        else if (!JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player1")
+        {
+
+            transform.position = obj;
+        }
+       
     }
 
     private void OnPlayerTouched()
     {
-        Debug.Log("It came in to On PlayerTouched");
+       
         if(JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player1")
         {
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-            Debug.Log("It came inside if condition Player 1 to On PlayerTouched");
+            JioNetworkmanager.Instance.SendPlayerData(transform.position);
         }
         else if(!JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player2")
         {
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-            Debug.Log("It came inside if condition Player 2 to On PlayerTouched");
-
+            JioNetworkmanager.Instance.SendPlayerData(transform.position);
         }
-        JioNetworkmanager.Instance.SendPlayerData(transform.position);
+        
        
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "LevelGameObject")
+        {
+            isCollided = true;
+            Debug.Log("The collided object was " + collision.gameObject.name);
+            JioNetworkmanager.Instance.OnPlayerCollidedWithObject();
+          
+        }
+    }
 
-    
+
 }

@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JioAuthentication.unity
-    guid: 1087edcf427b73b4c9c077571882dc04
-  - enabled: 1
     path: Assets/Scenes/JioPhotonLobbyScene.unity
     guid: da7e7f959313d6849b11623793be4586
   - enabled: 1
