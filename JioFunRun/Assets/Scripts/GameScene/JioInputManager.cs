@@ -58,7 +58,7 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
     }
     private void ProcesskeyboardInputs()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             
             if (Touched != null)

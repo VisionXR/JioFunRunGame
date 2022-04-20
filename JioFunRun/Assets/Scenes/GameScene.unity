@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13277a9554b0cd244a33a85690e5f24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 10
   isCollided: 0
 --- !u!54 &5757257
 Rigidbody:
@@ -1378,7 +1378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379211781}
   m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: 5.02, z: -15}
+  m_LocalPosition: {x: 0, y: 5.02, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5859054016712102762}
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199e5b483afcc0b49b5f806ad74eb89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 2, z: -15}
+  Offset: {x: 0, y: 2, z: -3}
   Player1: {fileID: 5757251}
   Player2: {fileID: 1823841637}
 --- !u!1 &480705189
@@ -5204,7 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13277a9554b0cd244a33a85690e5f24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 10
   isCollided: 0
 --- !u!54 &1823841643
 Rigidbody:
