@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
-  DevAccountEmail: visionxr.opc@gmail.com
-  DevAccountToken: iyccce9w8d7aoanhyr33j1a574ssxkpz4kiy7g7sb7cbmhmtu5qeqdpcnh1cbt3b4at1ccts8nqo76kqfhru4bqm83do8m1837bukgqemj4gqa45fr5ahxtgahnm91rfjabhsm4ca6cb4fb7s81mdy6ie77mqymj9ihca3hxhubsnqwf346mxoea1w3i9bj4w9zwwtam
-  SelectedStudio: VisionXR
-  SdkPath: Assets/PlayFabSDK
+  DevAccountEmail: 
+  DevAccountToken: 
+  SelectedStudio: 
+  SdkPath: 
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 1
+  curMainMenuIdx: 0
   curSubMenuIdx: 0
