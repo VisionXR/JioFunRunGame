@@ -1,9 +1,7 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using JMRSDK.InputModule;
 using System;
-using UnityEngine.UI;
-using System.Collections;
+
 
 public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulationHandler, ISwipeHandler
 {
@@ -12,7 +10,7 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
     JMRInputManager jmrInputManager;
     public event Action<float> SelectClick;
     public event Action UserSwipedLeft, UserSwipedRight;
-    public event Action Touched;
+    public event Action Touched,StayIdle;
    
     public void OnSelectClicked(SelectClickEventData eventData)
     {
@@ -36,8 +34,6 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
         
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
        
@@ -45,16 +41,12 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
         jmrInputManager.AddGlobalListener(gameObject);
     }
 
-
-
-
     // Update is called once per frame
     void Update()
     {
 
         ProcesskeyboardInputs();
-        ProcessJioInputs();
- 
+        ProcessJioInputs(); 
     }
     private void ProcesskeyboardInputs()
     {
@@ -65,17 +57,28 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
             {
                 Touched();
             }
+            else
+            {
+                StayIdle();
+            }
            
         }
     }
     private void ProcessJioInputs()
     {
         Vector2 TouchData = JMRInteraction.GetTouch();
-        if(TouchData.x>0 || TouchData.y > 0)
+        if(TouchData.x > 0 || TouchData.y > 0)
         {
             if (Touched != null)
             {
                 Touched();
+            }
+        }
+        else
+        {
+            if(StayIdle != null)
+            {
+                StayIdle();
             }
         }
     }

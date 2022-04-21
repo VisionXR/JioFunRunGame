@@ -19,6 +19,9 @@ TagManager:
   - DisabledTextLayer
   - DisabledLayer
   - LevelGameObject
+  - Search
+  - SecondryLayer
+  - ColliderObj
   layers:
   - Default
   - TransparentFX

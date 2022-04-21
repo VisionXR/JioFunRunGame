@@ -46,9 +46,10 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
 
 
     public int NextSceneNumber;
-    private const byte SendPlayerPos=1,PlayerHasCollided=2;
+    private const byte SendPlayerPos=1,PlayerHasCollided=2,SendIdlePos = 3;
    
     public event Action<Vector3> ReceiveOtherPlayerPosition;
+    public event Action ReceiveIdlePos;
 
 
     private void Awake()
@@ -220,6 +221,21 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
         PhotonNetwork.RaiseEvent(SendPlayerPos, data, raiseEventOptions, SendOptions.SendReliable);
     }
 
+    public void SendIdle()
+    {
+        object[] data = new object[] { "Idle" };
+        RaiseEventOptions raiseEventOptions;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        }
+        else
+        {
+            raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
+        }
+        PhotonNetwork.RaiseEvent(SendIdlePos, data, raiseEventOptions, SendOptions.SendReliable);
+    }
+
     private Vector3 RoundVector(Vector3 input)
     {
         Vector3 output;
@@ -233,27 +249,30 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
         return (output);
     }
     public void OnEvent(EventData photonEvent)
-    {
-       
+    {       
         byte eventCode = photonEvent.Code;
         if (eventCode == SendPlayerPos)
-        {
-            
+        {           
             object[] data = (object[])photonEvent.CustomData;
             if (ReceiveOtherPlayerPosition != null)
             {
                 ReceiveOtherPlayerPosition((Vector3)data[0]);
             }
-
         }
         if (eventCode == PlayerHasCollided)
         {
             object[] data = (object[])photonEvent.CustomData;
             bool isCollided = (bool)data[0];
-            Debug.Log("Other Player has Collided With GameObject");
-            // instantiate at previous CheckPoint
+
         }
-       
+        if (eventCode == SendIdlePos)
+        {
+            if(ReceiveIdlePos != null)
+            {
+                ReceiveIdlePos();
+            }
+        }
+
     }
     #endregion
 

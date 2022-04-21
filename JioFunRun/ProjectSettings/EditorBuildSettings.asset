@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/JioPhotonLobbyScene.unity
     guid: da7e7f959313d6849b11623793be4586
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: d2c3d30db3dbed048b70cb4a9c639aa3
+    path: Assets/Scenes/Level6.unity
+    guid: 3e643b1b81fa6ab4db1a17b92eae16f9
   m_configObjects: {}

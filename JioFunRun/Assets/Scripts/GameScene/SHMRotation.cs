@@ -8,16 +8,12 @@ public class SHMRotation : MonoBehaviour
     public float LL, UL;
     public bool isClock = true;
     public float angle;
-    void Start()
-    {
-        
-    }
-
-    
+   
     void Update()
     {
         if (isClock)
         {
+         
             transform.localEulerAngles += new Vector3(X, Y, Z) * Speed * Time.deltaTime;
         }
         else
@@ -27,23 +23,28 @@ public class SHMRotation : MonoBehaviour
         if (X != 0 && transform.localEulerAngles.x > UL)
         {
             isClock = false;
-            
+            angle = transform.localEulerAngles.x;
+
         }
         if (X != 0 && transform.localEulerAngles.x < LL)
         {
             isClock = true;
-           
+            angle = transform.localEulerAngles.x;
+
 
         }
         if (Y != 0 && transform.localEulerAngles.y > UL)
         {
             isClock = false;
-           
+            angle = transform.localEulerAngles.y;
+
+
         }
         if (Y != 0 && transform.localEulerAngles.y < LL)
         {
             isClock = true;
-           
+            angle = transform.localEulerAngles.y;
+
         }
         if (Z != 0 && transform.localEulerAngles.z > UL)
         {
