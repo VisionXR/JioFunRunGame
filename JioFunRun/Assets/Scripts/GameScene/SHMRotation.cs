@@ -7,6 +7,7 @@ public class SHMRotation : MonoBehaviour
     public float X, Y, Z;
     public float LL, UL;
     public bool isClock = true;
+    public float angle;
     void Start()
     {
         
@@ -26,10 +27,12 @@ public class SHMRotation : MonoBehaviour
         if (X != 0 && transform.localEulerAngles.x > UL)
         {
             isClock = false;
+            
         }
         if (X != 0 && transform.localEulerAngles.x < LL)
         {
             isClock = true;
+           
 
         }
         if (Y != 0 && transform.localEulerAngles.y > UL)
@@ -45,13 +48,14 @@ public class SHMRotation : MonoBehaviour
         if (Z != 0 && transform.localEulerAngles.z > UL)
         {
             isClock = false;
-           
-            
+            angle = transform.localEulerAngles.z;
+
         }
         if (Z != 0 && transform.localEulerAngles.z < LL)
         {
             isClock = true;
-     
+            angle = transform.localEulerAngles.z;
+
         }
     }
 }
