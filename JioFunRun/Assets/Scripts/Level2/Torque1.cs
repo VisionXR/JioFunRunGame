@@ -7,8 +7,7 @@ public class Torque1 : MonoBehaviour
     private Vector3 initPos, initRot;
     public float t = 1;
     public Rigidbody rb;
-    public float MinVelocity;
-    public float Force;
+ 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,10 +22,11 @@ public class Torque1 : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(t);
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            transform.position = initPos;
-            transform.eulerAngles = initRot;
+              rb.velocity = Vector3.zero;
+              rb.angularVelocity = Vector3.zero;
+              transform.position = initPos;
+              transform.eulerAngles = initRot;
+         
 
         }
     }
