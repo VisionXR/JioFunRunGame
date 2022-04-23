@@ -16,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position -= new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(0, 0, MoveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
+            transform.position -= new Vector3(0, 0, MoveSpeed * Time.deltaTime);
         }
     }
 }

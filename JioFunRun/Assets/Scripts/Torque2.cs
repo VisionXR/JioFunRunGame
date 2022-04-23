@@ -7,6 +7,7 @@ public class Torque2 : MonoBehaviour
     public float Force;
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Rigidbody>().AddForce((transform.forward -transform.up).normalized* Force);
+        other.GetComponent<Rigidbody>().AddForce((this.transform.forward -this.transform.up).normalized* Force);
+        Debug.Log(" it came in to On trigger Enter");
     }
 }
