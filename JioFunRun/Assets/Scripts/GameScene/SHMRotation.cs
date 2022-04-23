@@ -8,7 +8,9 @@ public class SHMRotation : MonoBehaviour
     public float LL, UL;
     public bool isClock = true;
     public float angle;
+  
    
+
     void Update()
     {
         if (isClock)

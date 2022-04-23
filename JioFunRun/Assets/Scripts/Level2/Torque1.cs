@@ -7,6 +7,8 @@ public class Torque1 : MonoBehaviour
     private Vector3 initPos, initRot;
     public float t = 1;
     public Rigidbody rb;
+    public float MinVelocity;
+    public float Force;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,5 +29,9 @@ public class Torque1 : MonoBehaviour
             transform.eulerAngles = initRot;
 
         }
+    }
+    private void Update()
+    {
+          
     }
 }
