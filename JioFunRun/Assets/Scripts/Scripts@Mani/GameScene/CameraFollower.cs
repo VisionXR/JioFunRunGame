@@ -8,7 +8,7 @@ public class CameraFollower : MonoBehaviour
     GameObject FollowPlayer;
     void Start()
     {
-        if(JioNetworkmanager.Instance.isMaster())
+        if(JioNetworkmanager.instance.isMaster())
         {
             FollowPlayer = Player1;
             

@@ -19,6 +19,17 @@ TagManager:
   - DisabledTextLayer
   - DisabledLayer
   - LevelGameObject
+<<<<<<< Updated upstream
+=======
+  - Search
+  - SecondryLayer
+  - ColliderObj
+  - OffseTrigger
+  - CheckPointTrigger
+  - WinTrigger
+  - Ground
+  - Collider
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -31,7 +42,7 @@ TagManager:
   - Head
   - Left
   - Right
-  - 
+  - PP
   - 
   - 
   - 

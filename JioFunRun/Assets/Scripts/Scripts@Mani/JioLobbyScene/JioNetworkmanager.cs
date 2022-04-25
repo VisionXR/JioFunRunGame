@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+<<<<<<< Updated upstream:JioFunRun/Assets/Scripts/Scripts@Mani/JioLobbyScene/JioNetworkmanager.cs
     public static JioNetworkmanager Instance;
 
     [Header("Login Panel")]
@@ -49,18 +50,49 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
     private const byte SendPlayerPos=1,PlayerHasCollided=2;
    
     public event Action<Vector3> ReceiveOtherPlayerPosition;
+=======
+    public static JioNetworkmanager instance;
+    RoomOptions roomOptions;
+    private const byte SendPlayerPos=1,PlayerHasCollided=2,SendIdlePos = 3;
+    public event Action<Vector3> ReceiveOtherPlayerPosition;
+    public event Action ReceiveIdlePos;
+    public event Action<string> RoomInfo;
+    public event Action<string> NewPlayerJoined;
+
+>>>>>>> Stashed changes:JioFunRun/Assets/Scripts/JioLobbyScene/JioNetworkmanager.cs
 
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
+        MenuManager.instance.CreateRoom += OnCreateRoom;
+        MenuManager.instance.JoinRoom += OnJoinRoom;
         PhotonNetwork.AutomaticallySyncScene = true;
-        ActivatePanels(LoginUIPanel.name);
+        roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 2;
+        roomOptions.IsOpen = true;
+        PhotonNetwork.ConnectUsingSettings();
+        
+        
     }
+
+    private void OnJoinRoom(string PlayerName, string RoomName)
+    {
+        PhotonNetwork.NickName = PlayerName;
+        PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions,TypedLobby.Default);
+    }
+
+    private void OnCreateRoom(string PlayerName, string RoomName)
+    {
+        PhotonNetwork.NickName = PlayerName;
+        PhotonNetwork.CreateRoom(RoomName, roomOptions);
+
+    }
+
     public bool isMaster()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -72,126 +104,48 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
             return false;
         }
     }
-
-    void Update()
-    {
-        ConnectionStatus.text = " Connection Status: " + PhotonNetwork.NetworkClientState;
-    }
-    #region Methods
-    public void OnEnterButtonClicked()
-    {
-        string playerName = PlayerNameIF.Text;
-        if (!string.IsNullOrEmpty(playerName))
-        {
-            PhotonNetwork.NickName = playerName;
-            PhotonNetwork.ConnectUsingSettings();
-        }
-        else
-        {
-            Debug.Log("PlayerName was invalid");
-        }
-    }
-    public void OnCreateRoomButtonClicked()
-    {
-        string roomName = RoomName.Text;
-        if (string.IsNullOrEmpty(roomName))
-        {
-            roomName = "Room Name was " + UnityEngine.Random.Range(1000, 10000);
-        }
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 2;
-
-        PhotonNetwork.CreateRoom(roomName, roomOptions);
-    }
-
-    public void ActivatePanels(string PanelName)
-    {
-        LoginUIPanel.SetActive(PanelName.Equals(LoginUIPanel.name));
-        GameOptionsUIPanel.SetActive(PanelName.Equals(GameOptionsUIPanel.name));
-        CreateRoomUIPanel.SetActive(PanelName.Equals(CreateRoomUIPanel.name));
-        InsideRoomUIPanel.SetActive(PanelName.Equals(InsideRoomUIPanel.name));
-        RoomListUIPanel.SetActive(PanelName.Equals(RoomListUIPanel.name));
-        JoinRandomRoomUIPanel.SetActive(PanelName.Equals(JoinRandomRoomUIPanel.name));
-        FriendRoomUIPanel.SetActive(PanelName.Equals(FriendRoomUIPanel.name));
-    }
-    public void OnInsideRoomBackButtonClicked()
-    {
-        PhotonNetwork.LeaveRoom();
-    }
-    public void OnStartGameButtonClicked()
-    {
-
-        PhotonNetwork.LoadLevel(NextSceneNumber);
-    }
-    public void OnJoinRandomRoomButtonClicked()
-    {
-        PhotonNetwork.JoinRoom(FriendRoomName.Text);
-    }
-    public void OnJoinRoomButonClicked()
-    {
-        string roomName = FriendRoomName.Text;
-        if (PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.LeaveLobby();
-        }
-        PhotonNetwork.JoinRoom(roomName);
-    }
-    public void OnFriendRoomBackButtonClicked()
-    {
-        ActivatePanels(GameOptionsUIPanel.name);
-    }
-
-    #endregion
-
     #region Photon CallBacks
 
 
     public override void OnConnected()
     {
-        Debug.Log("you have connected to internet");
+       
     }
     public override void OnConnectedToMaster()
     {
-        Debug.Log(PhotonNetwork.LocalPlayer.NickName + "  has connected to server ");
-        ActivatePanels(GameOptionsUIPanel.name);
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnCreatedRoom()
     {
-        Debug.Log("Created Room Successfully by " + PhotonNetwork.LocalPlayer.NickName + "Roomname was " + PhotonNetwork.CurrentRoom.Name);
+        RoomInfo("Success");
+    }
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        RoomInfo("Fail");
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("Joined Room Successfully by " + PhotonNetwork.LocalPlayer.NickName + "Roomname was " + PhotonNetwork.CurrentRoom.Name);
-        ActivatePanels(InsideRoomUIPanel.name);
-        RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
-        Player1Name.text = PlayerNameIF.Text;
-        StartGameButton.SetActive(false);
-       
-       
-
-
+        RoomInfo("Success");
+    }
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        
-        ActivatePanels(InsideRoomUIPanel.name);
-        RoomInfoText.text = " Room Name " + PhotonNetwork.CurrentRoom.Name + " Players/MaxPlayers: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
-        Player2Name.text = newPlayer.NickName;
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        {
-            StartGameButton.SetActive(true);
-        }
+        NewPlayerJoined(newPlayer.NickName);
+       
     }
 
 
     public override void OnLeftLobby()
     {
-        ActivatePanels(GameOptionsUIPanel.name);
+       
     }
     public override void OnLeftRoom()
     {
-        ActivatePanels(CreateRoomUIPanel.name);
+        
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -260,7 +214,7 @@ public class JioNetworkmanager : MonoBehaviourPunCallbacks, IOnEventCallback
     #region PlayerHasCollided
     public void OnPlayerCollidedWithObject()
     {
-        object[] data = new object[] { JioPlayer.Instance.isCollided };
+        object[] data = new object[] { JioPlayer.instance.isCollided };
         RaiseEventOptions raiseEventOptions;
         if (PhotonNetwork.IsMasterClient)
         {

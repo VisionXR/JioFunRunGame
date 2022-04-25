@@ -5,16 +5,21 @@ using System;
 
 public class JioPlayer : MonoBehaviour
 {
-    public static JioPlayer Instance;
+    public static JioPlayer instance;
     public float MoveSpeed;
     public bool isCollided;
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
+<<<<<<< Updated upstream:JioFunRun/Assets/Scripts/Scripts@Mani/GameScene/JioPlayer.cs
     void Start()
     {
         
+=======
+   /* void Start()
+    {        
+>>>>>>> Stashed changes:JioFunRun/Assets/Scripts/GameScene/JioPlayer.cs
         JioInputManager.Instance.Touched += OnPlayerTouched;
         JioNetworkmanager.Instance.ReceiveOtherPlayerPosition += OnPlayerPositionRecieved;
         if(JioNetworkmanager.Instance.isMaster() && gameObject.name == "Player1")
@@ -77,7 +82,7 @@ public class JioPlayer : MonoBehaviour
     {
         Vector3 CheckPointPosition = new Vector3(this.transform.position.x, this.transform.position.y, 0);
         this.transform.position = CheckPointPosition;
-    }
+    }*/
 
 
 }

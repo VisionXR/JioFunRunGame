@@ -5,14 +5,19 @@ using System;
 using UnityEngine.UI;
 using System.Collections;
 
-public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulationHandler, ISwipeHandler
+public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulationHandler, ISwipeHandler,ISelectHandler
 {
     public static JioInputManager Instance;
     public GameObject JIOInputManager;
     JMRInputManager jmrInputManager;
     public event Action<float> SelectClick;
     public event Action UserSwipedLeft, UserSwipedRight;
+<<<<<<< Updated upstream:JioFunRun/Assets/Scripts/Scripts@Mani/GameScene/JioInputManager.cs
     public event Action Touched;
+=======
+    public event Action Touched,StayIdle;
+    private bool isSelectDown = false;
+>>>>>>> Stashed changes:JioFunRun/Assets/Scripts/GameScene/JioInputManager.cs
    
     public void OnSelectClicked(SelectClickEventData eventData)
     {
@@ -22,12 +27,12 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
 
     public void OnSelectDown(SelectEventData eventData)
     {
-
+        isSelectDown = true;
     }
 
     public void OnSelectUp(SelectEventData eventData)
     {
-
+        isSelectDown = false;
     }
 
     private void Awake()
@@ -45,6 +50,7 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
         jmrInputManager.AddGlobalListener(gameObject);
     }
 
+<<<<<<< Updated upstream:JioFunRun/Assets/Scripts/Scripts@Mani/GameScene/JioInputManager.cs
 
 
 
@@ -55,6 +61,13 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
         ProcesskeyboardInputs();
         ProcessJioInputs();
  
+=======
+    void Update()
+    {
+
+       // ProcesskeyboardInputs();
+        ProcessJioInputs(); 
+>>>>>>> Stashed changes:JioFunRun/Assets/Scripts/GameScene/JioInputManager.cs
     }
     private void ProcesskeyboardInputs()
     {
@@ -64,16 +77,44 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
             if (Touched != null)
             {
                 Touched();
+<<<<<<< Updated upstream:JioFunRun/Assets/Scripts/Scripts@Mani/GameScene/JioInputManager.cs
             }
            
+=======
+            }      
+           
         }
+        if(Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            if (StayIdle != null)
+            {
+                StayIdle();
+            }
+>>>>>>> Stashed changes:JioFunRun/Assets/Scripts/GameScene/JioInputManager.cs
+        }
+
+        
     }
     private void ProcessJioInputs()
     {
+<<<<<<< Updated upstream:JioFunRun/Assets/Scripts/Scripts@Mani/GameScene/JioInputManager.cs
         Vector2 TouchData = JMRInteraction.GetTouch();
         if(TouchData.x>0 || TouchData.y > 0)
+=======
+   /*     Vector2 TouchData = JMRInteraction.GetTouch();
+        if(TouchData.sqrMagnitude > 0)
+        {           
+                    
+        }
+        else
+>>>>>>> Stashed changes:JioFunRun/Assets/Scripts/GameScene/JioInputManager.cs
         {
-            if (Touched != null)
+                StayIdle();       
+        }*/
+
+        if(isSelectDown)
+        {
+            if(Touched != null)
             {
                 Touched();
             }
@@ -100,12 +141,12 @@ public class JioInputManager : MonoBehaviour, ISelectClickHandler, IManipulation
 
     public void OnSwipeLeft(SwipeEventData eventData, float value)
     {
-        UserSwipedLeft();
+      //  UserSwipedLeft();
     }
 
     public void OnSwipeRight(SwipeEventData eventData, float value)
     {
-        UserSwipedRight();
+      //  UserSwipedRight();
     }
 
     public void OnSwipeUp(SwipeEventData eventData, float value)
